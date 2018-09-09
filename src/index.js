@@ -15,6 +15,7 @@ class Square extends React.Component {
 
 // guess: this will have the state of each square and turn as a prop
 class Board extends React.Component {
+  // NOTE this is really cool, not necessary to put <Component /> in JSX
   renderSquare(i) {
     return <Square />;
   }
