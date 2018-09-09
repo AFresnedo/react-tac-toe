@@ -6,8 +6,12 @@ class Board extends React.Component {
 
   constructor(props) {
     super(props);
+    // TODO determine if this does anything
+    const marks = Array(9).fill(null);
+    const turn = 0;
     this.state = {
-      marks: Array(9).fill(null)
+      marks,
+      turn,
     };
   }
   // NOTE i suspect the "i" in handleClick is the most important lesson here
@@ -19,10 +23,15 @@ class Board extends React.Component {
   handleClick(i) {
     // get a copy of the marks array in state
     const marks = this.state.marks.slice();
-    // mark the proper square
-    marks[i] = 'X';
-    // update board
-    this.setState({ marks });
+    // set the mark for the respective square
+    marks[i] = (this.state.turn % 2 === 0) ? 'X' : 'O';
+    // get a copy of the turn (integers are primitive)
+    const turn = this.state.turn + 1;
+    // update board and turn
+    this.setState({
+      marks,
+      turn
+    });
   }
   // NOTE this is really cool, not necessary to put <Component /> in JSX
   // NOTE parenthesis for return ( ) are to control javascripts' autosemicolon
