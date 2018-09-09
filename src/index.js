@@ -7,7 +7,7 @@ class Square extends React.Component {
   render() {
     return (
       <button className="square">
-        {/* TODO */}
+        { this.props.index }
       </button>
     );
   }
@@ -17,7 +17,7 @@ class Square extends React.Component {
 class Board extends React.Component {
   // NOTE this is really cool, not necessary to put <Component /> in JSX
   renderSquare(i) {
-    return <Square />;
+    return <Square index={i}/>;
   }
 
   render() {
