@@ -7,9 +7,6 @@ class Square extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      mark: null
-    };
   }
   render() {
 
@@ -26,9 +23,9 @@ class Square extends React.Component {
     return (
       <button className="square"
         onClick={( () => {
-          this.setState({mark: 'X'})}
-        )}>
-        { this.state.mark }
+          this.setState({mark: 'X'})
+        })}>
+        { this.props.mark }
       </button>
     );
   }
@@ -36,9 +33,16 @@ class Square extends React.Component {
 
 // guess: this will have the state of each square and turn as a prop
 class Board extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      marks: Array(9).fill(null)
+    };
+  }
   // NOTE this is really cool, not necessary to put <Component /> in JSX
   renderSquare(i) {
-    return <Square index={i}/>;
+    return <Square mark={this.state.marks[i]} />;
   }
 
   render() {
