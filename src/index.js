@@ -21,10 +21,7 @@ class Square extends React.Component {
      * but this should never be a thought, each square has its own state
      */
     return (
-      <button className="square"
-        onClick={( () => {
-          this.setState({mark: 'X'})
-        })}>
+      <button className="square" onClick={this.props.markIt}>
         { this.props.mark }
       </button>
     );
@@ -40,9 +37,19 @@ class Board extends React.Component {
       marks: Array(9).fill(null)
     };
   }
+  // NOTE i suspect the "i" in handleClick is the most important lesson here
+  // WARN apparently it wasn't, some weird thing about copying array is inc
+  handleClick(i) {
+    console.log('this is square:', i);
+  }
   // NOTE this is really cool, not necessary to put <Component /> in JSX
+  // NOTE parenthesis for return ( ) are to control javascripts' autosemicolon
   renderSquare(i) {
-    return <Square mark={this.state.marks[i]} />;
+    return (
+      <Square
+        mark={this.state.marks[i]}
+        markIt={() => this.handleClick(i)}
+      />);
   }
 
   render() {
