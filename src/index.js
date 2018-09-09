@@ -3,29 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 // guess: requires X or O passed as a prop, does NOT have state
-class Square extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-  render() {
-
-    /* WARN tons of mistakes getting the onClick to mark as "X"
-     * errors include: not respecting that state is private
-     *    - trying to set this.state.mark
-     *    - trying to set this.state = { mark:...
-     *    - not using setState
-     * also include: missing the key design that the state of THIS is just
-     * one box that knows about itself...for a second you thought this code
-     * would mark "X" on all components because they are all Square
-     * but this should never be a thought, each square has its own state
-     */
-    return (
-      <button className="square" onClick={this.props.markIt}>
-        { this.props.mark }
-      </button>
-    );
-  }
+// NOTE guess was correct! ayeeeee
+function Square(props) {
+  return (
+    <button className="square" onClick={props.markIt}>
+      {props.mark}
+    </button>
+  );
 }
 
 // guess: this will have the state of each square and turn as a prop
@@ -39,6 +23,10 @@ class Board extends React.Component {
   }
   // NOTE i suspect the "i" in handleClick is the most important lesson here
   // WARN apparently it wasn't, some weird thing about copying array is inc
+  /* NOTE wasn't that weird...just very forward thinking about usefulness
+   * of not losing information...anyway, don't let that distract from "i"
+   */
+
   handleClick(i) {
     // get a copy of the marks array in state
     const marks = this.state.marks.slice();
