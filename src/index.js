@@ -40,7 +40,12 @@ class Board extends React.Component {
   // NOTE i suspect the "i" in handleClick is the most important lesson here
   // WARN apparently it wasn't, some weird thing about copying array is inc
   handleClick(i) {
-    console.log('this is square:', i);
+    // get a copy of the marks array in state
+    const marks = this.state.marks.slice();
+    // mark the proper square
+    marks[i] = 'X';
+    // update board
+    this.setState({ marks });
   }
   // NOTE this is really cool, not necessary to put <Component /> in JSX
   // NOTE parenthesis for return ( ) are to control javascripts' autosemicolon
