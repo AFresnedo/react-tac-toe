@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+// guess: requires X or O passed as a prop, does NOT have state
 class Square extends React.Component {
   render() {
     return (
@@ -12,12 +13,17 @@ class Square extends React.Component {
   }
 }
 
+// guess: this will have the state of each square and turn as a prop
 class Board extends React.Component {
   renderSquare(i) {
     return <Square />;
   }
 
   render() {
+    /* guess: this will not be const OR will be a prop passed into board
+     * probably a prop, since we have a "game" parent component
+     */
+    // guess: does NOT have a helper to pass to square
     const status = 'Next player: X';
 
     return (
@@ -43,6 +49,8 @@ class Board extends React.Component {
   }
 }
 
+// guess: passes game turn (its state) as a prop to board
+// guess: has a helper that it passes to board to change game turn
 class Game extends React.Component {
   render() {
     return (
