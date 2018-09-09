@@ -4,10 +4,31 @@ import './index.css';
 
 // guess: requires X or O passed as a prop, does NOT have state
 class Square extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      mark: null
+    };
+  }
   render() {
+
+    /* WARN tons of mistakes getting the onClick to mark as "X"
+     * errors include: not respecting that state is private
+     *    - trying to set this.state.mark
+     *    - trying to set this.state = { mark:...
+     *    - not using setState
+     * also include: missing the key design that the state of THIS is just
+     * one box that knows about itself...for a second you thought this code
+     * would mark "X" on all components because they are all Square
+     * but this should never be a thought, each square has its own state
+     */
     return (
-      <button className="square">
-        { this.props.index }
+      <button className="square"
+        onClick={( () => {
+          this.setState({mark: 'X'})}
+        )}>
+        { this.state.mark }
       </button>
     );
   }
