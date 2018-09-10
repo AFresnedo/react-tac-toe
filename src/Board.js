@@ -79,22 +79,21 @@ class Board extends React.Component {
 // helper functions, not method of Board (not exported)
 //
 function checkEnd(marks) {
-  let gameOver = false;
+  let winner = null;
   //
   // check for a player victory
   //
   // check rows
-  if(checkLine(0, 2, 1)) { gameOver = true };
-  if(checkLine(3, 5, 1)) { gameOver = true };
-  if(checkLine(6, 8, 1)) { gameOver = true };
+  if (winner = checkLine(0, 2, 1, marks)) { return winner; }
+  if (winner = checkLine(3, 5, 1, marks)) { return winner; }
+  if (winner = checkLine(6, 8, 1, marks)) { return winner; }
   // check columns
-  if(checkLine(0, 3, 6)) { gameOver = true };
-  if(checkLine(1, 3, 7)) { gameOver = true };
-  if(checkLine(2, 3, 8)) { gameOver = true };
+  if (winner = checkLine(0, 3, 6, marks)) { return winner; }
+  if (winner = checkLine(1, 3, 7, marks)) { return winner; }
+  if (winner = checkLine(2, 3, 8, marks)) { return winner; }
   // check diagonals
-  if(checkLine(0, 8, 3)) { gameOver = true };
-  if(checkLine(2, 6, 2)) { gameOver = true };
-  //
+  if (winner = checkLine(0, 8, 3, marks)) { return winner; }
+  if (winner = checkLine(2, 6, 2, marks)) { return winner; }
   // check for a draw
   //
 }
@@ -112,7 +111,7 @@ function checkLine(start, end, increment, marks) {
     toCompare = marks[i];
   }
   // if the same, winner is mark[i] (either X or O)
-  return same ? true : false;
+  return same ? toCompare : null;
 }
 
 /* AVOID MUTATIONS (first example: slice array of marks, instead of editing):
