@@ -95,7 +95,7 @@ function checkEnd(marks) {
   if (winner = checkLine(0, 8, 3, marks)) { return winner; }
   if (winner = checkLine(2, 6, 2, marks)) { return winner; }
   // check for a draw
-  //
+  return stalemate(marks) ? 'draw' : false;
 }
 
 function checkLine(start, end, increment, marks) {
@@ -112,6 +112,16 @@ function checkLine(start, end, increment, marks) {
   }
   // if the same, winner is mark[i] (either X or O)
   return same ? toCompare : null;
+}
+
+function stalemate(marks) {
+  let gameOver = true;
+  marks.forEach(function(mark) {
+    if (!mark) {
+      gameOver = false;
+    }
+  });
+  return gameOver;
 }
 
 /* AVOID MUTATIONS (first example: slice array of marks, instead of editing):
