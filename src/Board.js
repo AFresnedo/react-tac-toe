@@ -98,6 +98,7 @@ function checkEnd(marks) {
   return stalemate(marks) ? 'draw' : false;
 }
 
+// TODO implement using rest, best of both worlds (2D array + no hardcode)
 function checkLine(start, end, increment, marks) {
   // check to see if every mark is the same
   let same = true;
