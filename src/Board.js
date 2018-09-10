@@ -29,13 +29,14 @@ class Board extends React.Component {
     marks[i] = (this.state.turn % 2 === 0) ? 'X' : 'O';
     // get a copy of the turn (integers are primitive)
     const turn = this.state.turn + 1;
-    // TODO implement instead of log
-    console.log(checkEnd(this.state.marks));
     // update board and turn
     this.setState({
       marks,
       turn
     });
+    // TODO implement instead of log
+    // console.log(checkEnd(this.state.marks));
+    console.log(checkEnd(marks));
   }
   // NOTE this is really cool, not necessary to put <Component /> in JSX
   // NOTE parenthesis for return ( ) are to control javascripts' autosemicolon
@@ -52,8 +53,15 @@ class Board extends React.Component {
      * probably a prop, since we have a "game" parent component
      */
     // guess: does NOT have a helper to pass to square
-    let status = this.state.turn % 2 === 0 ? 'X\'s turn' :
+    let status;
+    let winner = checkEnd(this.state.marks);
+    if (winner) {
+      status = `Winner is: ${winner}`;
+    }
+    else {
+      status = this.state.turn % 2 === 0 ? 'X\'s turn' :
       'O\'s turn';
+    }
 
     return (
       <div>
