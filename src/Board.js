@@ -7,6 +7,8 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     // TODO determine if this does anything
+    // NOTE it does not do anything, they are passed by reference
+    // NOTE if you want to make properties immutable, then prevent writing
     const marks = Array(9).fill(null);
     const turn = 0;
     this.state = {
