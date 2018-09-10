@@ -25,6 +25,10 @@ class Board extends React.Component {
   handleClick(i) {
     // get a copy of the marks array in state
     const marks = this.state.marks.slice();
+    // end function if marking this square is not a valid action
+    if (marks[i] || checkEnd(marks)) {
+      return;
+    }
     // set the mark for the respective square
     marks[i] = (this.state.turn % 2 === 0) ? 'X' : 'O';
     // get a copy of the turn (integers are primitive)
