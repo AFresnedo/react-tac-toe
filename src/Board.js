@@ -13,7 +13,7 @@ class Board extends React.Component {
     const turn = 0;
     this.state = {
       marks,
-      turn,
+      turn
     };
   }
   // NOTE i suspect the "i" in handleClick is the most important lesson here
@@ -50,7 +50,8 @@ class Board extends React.Component {
      * probably a prop, since we have a "game" parent component
      */
     // guess: does NOT have a helper to pass to square
-    const status = 'Next player: X';
+    let status = this.state.turn % 2 === 0 ? 'Player: X\'s turn' :
+      'Player Y\'s turn';
 
     return (
       <div>
