@@ -29,6 +29,8 @@ class Board extends React.Component {
     marks[i] = (this.state.turn % 2 === 0) ? 'X' : 'O';
     // get a copy of the turn (integers are primitive)
     const turn = this.state.turn + 1;
+    // TODO implement instead of log
+    console.log(checkEnd(this.state.marks));
     // update board and turn
     this.setState({
       marks,
@@ -50,8 +52,8 @@ class Board extends React.Component {
      * probably a prop, since we have a "game" parent component
      */
     // guess: does NOT have a helper to pass to square
-    let status = this.state.turn % 2 === 0 ? 'Player: X\'s turn' :
-      'Player Y\'s turn';
+    let status = this.state.turn % 2 === 0 ? 'X\'s turn' :
+      'O\'s turn';
 
     return (
       <div>
@@ -106,7 +108,7 @@ function checkLine(start, end, increment, marks) {
   let toCompare = marks[start];
   for (let i = start + increment; i <= end; i += increment) {
     // check if new mark is the same as old mark
-    if (marks[i] !== toCompare) {
+    if (marks[i] && marks[i] !== toCompare) {
       same = false;
     }
     // update "previous mark checked"
