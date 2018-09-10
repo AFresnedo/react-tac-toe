@@ -75,6 +75,46 @@ class Board extends React.Component {
   }
 }
 
+//
+// helper functions, not method of Board (not exported)
+//
+function checkEnd(marks) {
+  let gameOver = false;
+  //
+  // check for a player victory
+  //
+  // check rows
+  if(checkLine(0, 2, 1)) { gameOver = true };
+  if(checkLine(3, 5, 1)) { gameOver = true };
+  if(checkLine(6, 8, 1)) { gameOver = true };
+  // check columns
+  if(checkLine(0, 3, 6)) { gameOver = true };
+  if(checkLine(1, 3, 7)) { gameOver = true };
+  if(checkLine(2, 3, 8)) { gameOver = true };
+  // check diagonals
+  if(checkLine(0, 8, 3)) { gameOver = true };
+  if(checkLine(2, 6, 2)) { gameOver = true };
+  //
+  // check for a draw
+  //
+}
+
+function checkLine(start, end, increment, marks) {
+  // check to see if every mark is the same
+  let same = true;
+  let toCompare = marks[start];
+  for (let i = start + increment; i <= end; i += increment) {
+    // check if new mark is the same as old mark
+    if (marks[i] !== toCompare) {
+      same = false;
+    }
+    // update "previous mark checked"
+    toCompare = marks[i];
+  }
+  // if the same, winner is mark[i] (either X or O)
+  return same ? true : false;
+}
+
 /* AVOID MUTATIONS (first example: slice array of marks, instead of editing):
  *
  * NOTE Complex Features Become Simple
