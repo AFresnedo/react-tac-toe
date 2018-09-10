@@ -91,11 +91,11 @@ function checkEnd(marks) {
   if (winner = checkLine(3, 5, 1, marks)) { return winner; }
   if (winner = checkLine(6, 8, 1, marks)) { return winner; }
   // check columns
-  if (winner = checkLine(0, 3, 6, marks)) { return winner; }
-  if (winner = checkLine(1, 3, 7, marks)) { return winner; }
-  if (winner = checkLine(2, 3, 8, marks)) { return winner; }
+  if (winner = checkLine(0, 6, 3, marks)) { return winner; }
+  if (winner = checkLine(1, 7, 3, marks)) { return winner; }
+  if (winner = checkLine(2, 8, 3, marks)) { return winner; }
   // check diagonals
-  if (winner = checkLine(0, 8, 3, marks)) { return winner; }
+  if (winner = checkLine(0, 8, 4, marks)) { return winner; }
   if (winner = checkLine(2, 6, 2, marks)) { return winner; }
   // check for a draw
   return stalemate(marks) ? 'draw' : false;
